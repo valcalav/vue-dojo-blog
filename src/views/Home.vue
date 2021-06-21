@@ -1,38 +1,51 @@
 <template>
   <div class="home">
-    <h1>home</h1>
-    <p ref="p">{{name}} and {{age}}</p>
-    <button @click="handleClick">click me</button>
-    <button @click="age++">Increase age</button>
-    <input type="text" v-model="name">
+    <h1>Home</h1>
+
+    <!-- REF AND REACTIVE
+    <h2>Refs</h2>
+
+    <p> {{ ninjaOne.name }} - {{ ninjaOne.age }} </p>
+    <button @click="updateNinjaOne">Update ninja one</button>
+
+    <h2>Reactive</h2>
+    <p> {{ ninjaTwo.name }} - {{ ninjaTwo.age }} </p>
+    <button @click="updateNinjaTwo">Update ninja two</button> -->
+
+
+
   </div>
   
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref, reactive } from '@vue/reactivity'
 
 
 export default {
   name: 'Home',
   setup() {
 
-    // console.log(this)
+    // REF AND REACTIVE
+    // const ninjaOne = ref({name: 'mario', age: 30})
+    // const ninjaTwo = reactive({ name: 'luigi', age: 35})
+    
+    // const updateNinjaOne = () => {
+    //   ninjaOne.value.age = 40
+    // }
 
-    // const p = ref(null)
+    // const updateNinjaTwo = () => {
+    //   ninjaTwo.age = 45
+    // }
 
-    let name = ref('mario')
-    let age = ref(30)
+    // return { ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo }
+  
+    const name = computed(() => {
+      return 'shaun'
+    })
 
-    const handleClick = () => {
-      name.value = 'luigi'
-      age.value = 33
-      // console.log(p, p.value)
-      // p.value.classList.add('test')
-      // p.value.textContent = 'hello, ninjas'
-    }
-
-    return { name, age, handleClick }
+    return { }
+  
   }
 }
 </script>
