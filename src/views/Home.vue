@@ -12,7 +12,15 @@
     <p> {{ ninjaTwo.name }} - {{ ninjaTwo.age }} </p>
     <button @click="updateNinjaTwo">Update ninja two</button> -->
 
-
+  <h2>Computed values</h2>
+  <input type="text" v-model="search">
+  <div v-for="name in names" :key="name">
+    {{name}}
+  </div>
+  <h3>Matching names</h3>
+  <div v-for="name in matchingNames" :key="name">
+    {{name}}
+  </div>
 
   </div>
   
@@ -40,11 +48,14 @@ export default {
 
     // return { ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo }
   
-    const name = computed(() => {
-      return 'shaun'
+    const search = ref('')
+    const names = ref(['mario', 'luigi', 'yoshi', 'toad', 'peach', 'bowser'])
+
+    const matchingNames = computed(() => {
+      return names.value.filter(name => name.includes(search.value))
     })
 
-    return { }
+    return { names, search, matchingNames }
   
   }
 }
