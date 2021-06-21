@@ -12,15 +12,15 @@
     <p> {{ ninjaTwo.name }} - {{ ninjaTwo.age }} </p>
     <button @click="updateNinjaTwo">Update ninja two</button> -->
 
-  <h2>Computed values</h2>
-  <input type="text" v-model="search">
-  <div v-for="name in names" :key="name">
-    {{name}}
-  </div>
-  <h3>Matching names</h3>
-  <div v-for="name in matchingNames" :key="name">
-    {{name}}
-  </div>
+    <h2>Computed values</h2>
+    <input type="text" v-model="search">
+    <div v-for="name in names" :key="name">
+      {{name}}
+    </div>
+    <h3>Matching names</h3>
+    <div v-for="name in matchingNames" :key="name">
+      {{name}}
+    </div>
 
   </div>
   
@@ -28,6 +28,7 @@
 
 <script>
 import { computed, ref, reactive } from '@vue/reactivity'
+import { watch, watchEffect } from '@vue/runtime-core'
 
 
 export default {
@@ -50,6 +51,14 @@ export default {
   
     const search = ref('')
     const names = ref(['mario', 'luigi', 'yoshi', 'toad', 'peach', 'bowser'])
+
+    watch(search, () => {
+      console.log('watch function ran')
+    })
+
+    watchEffect(() => {
+      console.log('watchEffect function ran', search.value)
+    })
 
     const matchingNames = computed(() => {
       return names.value.filter(name => name.includes(search.value))
